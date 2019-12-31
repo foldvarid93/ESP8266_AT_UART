@@ -1,0 +1,111 @@
+D:\ESP8266\esptool-master\esptool-master>python esptool.py --port COM5 write_flash 0x00000 D:\ESP8266\ESP8266_AT_Bin_V1.7\ESP8266_AT_Bin_V1.7\bin\boot_v1.7.bin
+
+Microsoft Windows [Version 10.0.17763.615]
+(c) 2018 Microsoft Corporation. Minden jog fenntartva.
+
+C:\Windows\system32>cd\
+
+C:\>python\scripts
+'python\scripts' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\>Python\scripts
+'Python\scripts' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\>cd Python\scripts
+
+C:\Python\Scripts>esptool.py
+esptool.py v2.7
+usage: esptool [-h] [--chip {auto,esp8266,esp32}] [--port PORT] [--baud BAUD]
+               [--before {default_reset,no_reset,no_reset_no_sync}]
+               [--after {hard_reset,soft_reset,no_reset}] [--no-stub]
+               [--trace] [--override-vddsdio [{1.8V,1.9V,OFF}]]
+               {load_ram,dump_mem,read_mem,write_mem,write_flash,run,image_info,make_image,elf2image,read_mac,chip_id,flash_id,read_flash_status,write_flash_status,read_flash,verify_flash,erase_flash,erase_region,version}
+               ...
+
+esptool.py v2.7 - ESP8266 ROM Bootloader Utility
+
+positional arguments:
+  {load_ram,dump_mem,read_mem,write_mem,write_flash,run,image_info,make_image,elf2image,read_mac,chip_id,flash_id,read_flash_status,write_flash_status,read_flash,verify_flash,erase_flash,erase_region,version}
+                        Run esptool {command} -h for additional help
+    load_ram            Download an image to RAM and execute
+    dump_mem            Dump arbitrary memory to disk
+    read_mem            Read arbitrary memory location
+    write_mem           Read-modify-write to arbitrary memory location
+    write_flash         Write a binary blob to flash
+    run                 Run application code in flash
+    image_info          Dump headers from an application image
+    make_image          Create an application image from binary files
+    elf2image           Create an application image from ELF file
+    read_mac            Read MAC address from OTP ROM
+    chip_id             Read Chip ID from OTP ROM
+    flash_id            Read SPI flash manufacturer and device ID
+    read_flash_status   Read SPI flash status register
+    write_flash_status  Write SPI flash status register
+    read_flash          Read SPI flash content
+    verify_flash        Verify a binary blob against flash
+    erase_flash         Perform Chip Erase on SPI flash
+    erase_region        Erase a region of the flash
+    version             Print esptool version
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --chip {auto,esp8266,esp32}, -c {auto,esp8266,esp32}
+                        Target chip type
+  --port PORT, -p PORT  Serial port device
+  --baud BAUD, -b BAUD  Serial port baud rate used when flashing/reading
+  --before {default_reset,no_reset,no_reset_no_sync}
+                        What to do before connecting to the chip
+  --after {hard_reset,soft_reset,no_reset}, -a {hard_reset,soft_reset,no_reset}
+                        What to do after esptool.py is finished
+  --no-stub             Disable launching the flasher stub, only talk to ROM
+                        bootloader. Some features will not be available.
+  --trace, -t           Enable trace-level output of esptool.py interactions.
+  --override-vddsdio [{1.8V,1.9V,OFF}]
+                        Override ESP32 VDDSDIO internal voltage regulator (use
+                        with care)
+
+C:\Python\Scripts>esptool.py --port COM5 write_flash 0x00000 D:\ESP8266\ESP8266_AT_Bin_V1.7\ESP8266_AT_Bin_V1.7\bin\boot_v1.7.bin
+esptool.py v2.7
+Serial port COM5
+Traceback (most recent call last):
+  File "C:\Python\Scripts\esptool.py-script.py", line 11, in <module>
+    load_entry_point('esptool==2.7', 'console_scripts', 'esptool.py')()
+  File "c:\python\lib\site-packages\esptool.py", line 3145, in _main
+    main()
+  File "c:\python\lib\site-packages\esptool.py", line 2834, in main
+    esp = ESPLoader.detect_chip(each_port, initial_baud, args.before, args.trace)
+  File "c:\python\lib\site-packages\esptool.py", line 273, in detect_chip
+    detect_port = ESPLoader(port, baud, trace_enabled=trace_enabled)
+  File "c:\python\lib\site-packages\esptool.py", line 237, in __init__
+    self._port = serial.serial_for_url(port)
+  File "c:\python\lib\site-packages\serial\__init__.py", line 88, in serial_for_url
+    instance.open()
+  File "c:\python\lib\site-packages\serial\serialwin32.py", line 62, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM5': FileNotFoundError(2, 'A rendszer nem találja a megadott fájlt.', None, 2)
+
+C:\Python\Scripts>esptool.py --port COM12 write_flash 0x00000 D:\ESP8266\ESP8266_AT_Bin_V1.7\ESP8266_AT_Bin_V1.7\bin\boot_v1.7.bin
+esptool.py v2.7
+Serial port COM12
+Connecting........_
+Detecting chip type... ESP8266
+Chip is ESP8266EX
+Features: WiFi
+Crystal is 26MHz
+MAC: 68:c6:3a:ab:3e:02
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Auto-detected Flash size: 4MB
+Flash params set to 0x0040
+Compressed 4080 bytes to 2936...
+Wrote 4080 bytes (2936 compressed) at 0x00000000 in 0.3 seconds (effective 116.9 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+
+C:\Python\Scripts>
