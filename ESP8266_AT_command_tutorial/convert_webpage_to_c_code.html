@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Convert webpage to store in c code</title>
+    </head>
+    <body>
+            <table>
+                <tr>
+                    <td>webpage source code</td>
+                    <td>generated c source code (copy this code to a c file)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea rows="30" cols="70" id="webpage"></textarea> 
+                    </td>
+                    <td>
+                        <textarea rows="30" cols="70" id="c_code"></textarea> 
+                    </td>
+                    <td><input style="width:200px; height:50px; font-size:20px;" type="button" value="Convert" onclick="Convert();"></td>
+                </tr>
+            </table>
+            
+            
+
+            
+            
+
+            <script>
+                function Convert(){
+                    var webpage_string=document.getElementById("webpage").value;
+                    var c_code_textarea=document.getElementById("c_code");
+                    var s1="";
+                    var s2="";
+                    var maxlength=webpage_string.length;
+                    var j=0;
+                    for (var i=0; i<webpage_string.length; i++){
+                        if (webpage_string[i]=='\n'){
+                            s2+="\twebpage["+j+"]='\\n';\n";
+                            j++;
+                        }
+                        else if (webpage_string[i]!='\t'){
+                            //s2+="\twebpage["+j+"]='"+webpage_string[i].charCodeAt(0)+"';\n"; ascii code
+                            s2+="\twebpage["+j+"]='"+webpage_string[i]+"';\n";
+                            j++;
+                        }
+                    }
+                    s2+="\twebpage["+j+"]='\\r';\n"
+                    j++;
+                    s2+="\twebpage["+j+"]='\\n';\n"
+                    j++;
+                    s2+="\twebpage["+j+"]='\\0';\n";
+                    j++;
+                    s1+="uint8_t webpage["+j+"];\n";
+                    s1+="void InitWebpage(){\n"
+                    s2+="}"
+                    c_code_textarea.value=s1+s2;
+                }
+            </script>
+    </body>
+</html>

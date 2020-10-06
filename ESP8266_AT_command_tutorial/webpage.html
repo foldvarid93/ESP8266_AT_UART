@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>esp8266 test page</title>
+	</head>
+	<body>
+		<h1>This is a test page. ESP8266 with AT commands</h1>
+		<p>Press the buttons</p>
+		<p id="LEDStatus"></p>
+		<input type="button" value="Turn on led" onclick="TurnOnLed();">
+		<br />
+		<br />
+		<input type="button" value="Turn off led" onclick="TurnOffLed();">
+
+		<script>
+			function TurnOnLed(){
+				nocache = "&nocache=" + Math.random() * 1000000;
+				var request = new XMLHttpRequest();
+				request.onreadystatechange=function(){
+					if (this.readyState==4){
+						if (this.status==200){
+							if (this.responseText!=null){
+								document.getElementById("LEDStatus").style.color="green";
+								document.getElementById("LEDStatus").innerHTML=this.responseText;
+							}
+						}
+					}
+				}
+				strText = "MYCOMMAND_LED=1";
+				request.open("GET", strText + nocache, true);
+				request.send(null);
+			}
+			function TurnOffLed(){
+				nocache = "&nocache=" + Math.random() * 1000000;
+				var request = new XMLHttpRequest();
+				request.onreadystatechange=function(){
+					if (this.readyState==4){
+						if (this.status==200){
+							if (this.responseText!=null){
+								document.getElementById("LEDStatus").style.color="red";
+								document.getElementById("LEDStatus").innerHTML=this.responseText;
+							}
+						}
+					}
+				}
+				strText = "MYCOMMAND_LED=0";
+				request.open("GET", strText + nocache, true);
+				request.send(null);
+			}
+		</script>
+	</body>
+	
+</html>
+
+
